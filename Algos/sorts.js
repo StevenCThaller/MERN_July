@@ -4,13 +4,44 @@
 // the entire array, looking at 2 elements, and swapping them if the left
 // one is greater than the right one. Basically, we're having each element
 // "bubble up" until the array is sorted.
-function bubbleSort(array) {
 
+
+// [2, 5, 9, 10, 16, 18, 22]
+
+function bubbleSort(arr) {
+    // let sorted = false;
+    // while(!sorted){
+    //     sorted = true;
+    //     for(let i = 1; i < arr.length; i++) {
+    //         if(arr[i-1] > arr[i]){
+    //             let temp = arr[i-1];
+    //             arr[i-1] = arr[i];
+    //             arr[i] = temp;
+    //             sorted = false;
+    //         }
+    //     }
+    // }
+    let sorted;
+    do {
+        sorted = true;
+        for(let i = 1; i < arr.length; i++) {
+            if(arr[i-1] > arr[i]){
+                let temp = arr[i-1];
+                arr[i-1] = arr[i];
+                arr[i] = temp;
+                sorted = false;
+            }
+        }
+    }
+    while(!sorted)
+
+
+    return arr;
 }
 
 
 // Write a function to perform selection sort:
-// arr[] = 64 25 12 22 11
+// arr[] = [ 64, 25, 12, 22, 11 ]
 
 // Find the minimum element in arr[0...4]
 // and place it at beginning
@@ -27,6 +58,18 @@ function bubbleSort(array) {
 // Find the minimum element in arr[3...4]
 // and place it at beginning of arr[3...4]
 // 11 12 22 25 64 
-function selectionSort(array) {
 
+function selectionSort(arr) {
+    for(let i = 0; i < arr.length; i++) {
+        let min = i;
+        for(let j = i+1; j < arr.length; j++) {
+            if(arr[j] < arr[min]){
+                min = j;
+            }
+        }
+        let temp = arr[min];
+        arr[min] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
 }
