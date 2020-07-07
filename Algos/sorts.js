@@ -81,5 +81,19 @@ function selectionSort(arr) {
 // Then at i, we "insert" that element wherever it belongs in [0, ..., i-1].
 
 function insertionSort(arr) {
-
+    // First we want to loop through the entire array
+    for(let i = 1; i < arr.length; i++) {
+        // Starting at i, we want to swap the element to the left until it's in place.
+        let index = i;
+        // Until the element is in place or at the beginning of the array:
+        while(index > 0 && arr[index] < arr[index-1]) {
+            // Swap the element with the one to its left
+            let temp = arr[index];
+            arr[index] = arr[index-1];
+            arr[index-1] = temp;
+            // And decrement index so we can do it again!
+            index--;
+        }
+    }
+    return arr;
 }
