@@ -73,3 +73,13 @@ function selectionSort(arr) {
     }
     return arr;
 }
+
+
+// Write a function that performs an insertion sort.
+// The way insertion sort works is you loop through each index i 
+// and at each i, we should have arr[0] through arr[i-1] be sorted.
+// Then at i, we "insert" that element wherever it belongs in [0, ..., i-1].
+
+function insertionSort(arr) {
+
+}
