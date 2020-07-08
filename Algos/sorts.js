@@ -100,10 +100,60 @@ function insertionSort(arr) {
 
 // Write a function that will merge 2 sorted arrays
 function mergeArrays(arr1, arr2) {
+    // We basically need 2 iterators: one for arr1 and one for arr2
+    let i = 0; 
+    let j = 0;
+    // And a new empty array for us to squish everything into.
+    let newArr = [];
 
+    // This first while loop will run until either i or j reach the end of their
+    // respective arrays
+    while(i < arr1.length && j < arr2.length) {
+        // If the element in array 1 at index i is less than the element
+        // in array 2 at index j, push it into the new array and increment i
+        if(arr1[i] < arr2[j]) {
+            newArr.push(arr1[i]);
+            i++;
+        }
+        // Otherwise, push the element in array 2 at index j into the new array
+        // and increment j
+        else {
+            newArr.push(arr2[j]);
+            j++;
+        }
+    }
+
+    // Now it's possible that we finished iterating through 1 array,
+    // and haven't looked at any of the elements in the other,
+    // so these while loops will make sure the rest of the elements get put in there.
+    while(i < arr1.length) {
+        newArr.push(arr1[i]);
+        i++;
+    }
+    while(j < arr2.length) {
+        newArr.push(arr2[j]);
+        j++;
+    }
+    // And finally, return the new array!
+    return newArr;
 }
 
 // Write a function that will perform merge sort.
 function mergeSort(arr) {
+    // If the array has a length of 1, it's obviously already sorted.
+    if(arr.length == 1)
+        return arr;
+    
+    // otherwise, let's go ahead and split the array in 2: left and right
+    let left = arr.slice(0, Math.floor(arr.length/2));
+    let right = arr.slice(Math.floor(arr.length/2), arr.length);
 
+    // Now, we want to make our recursive calls for both the left side. This
+    // is the divide part, constantly splitting the array in half until it's 1 element long
+    left = mergeSort(left);
+    right = mergeSort(right);
+    
+    // Now for the conquer. We'll use that merge function we wrote, and merge what is
+    // returned as the left and right side of our recursive calls.
+    return mergeArrays(left, right);
 }
