@@ -97,3 +97,13 @@ function insertionSort(arr) {
     }
     return arr;
 }
+
+// Write a function that will merge 2 sorted arrays
+function mergeArrays(arr1, arr2) {
+
+}
+
+// Write a function that will perform merge sort.
+function mergeSort(arr) {
+
+}
