@@ -157,3 +157,10 @@ function mergeSort(arr) {
     // returned as the left and right side of our recursive calls.
     return mergeArrays(left, right);
 }
+
+// Write a function that will perform quick sort.
+
+// Once again, recursion is our friend on this one.
+function quickSort(arr, ...anyotherthingsyouneedhere) {
+
+}
