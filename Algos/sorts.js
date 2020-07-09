@@ -158,9 +158,5 @@ function mergeSort(arr) {
     return mergeArrays(left, right);
 }
 
-// Write a function that will perform quick sort.
 
-// Once again, recursion is our friend on this one.
-function quickSort(arr, ...anyotherthingsyouneedhere) {
 
-}
