@@ -160,3 +160,26 @@ function mergeSort(arr) {
 
 
 
+// Write an algorithm for the partition portion of Quick Sort
+
+// It should take an array, and potentially a left index, and a right index. But left and right will
+// have default values of 0 and the last index of the array. In return, it should
+// rearrange so that the elements greater than (or equal to) the element at your initial pivot index
+// (for simplicity's sake let's just choose the rightmost element) are to its right,
+// and those less than that element are to its left.
+
+// It should return the pivot element's new index
+function partition(arr, left=0, right=arr.length-1) {
+
+}
+
+
+// Write an algorithm that performs quick sort. It will take an array, and potentially a left
+// index and right index. The left and right will have a default of 0 and the last index of the
+// array.
+
+// HINT: This will consist of a break case, 2 recursive calls, and a call
+// to the partition function (not necessarily in that order!!!!);
+function quickSort(arr, left=0, right=arr.length-1){
+
+}
