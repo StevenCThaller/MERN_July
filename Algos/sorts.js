@@ -170,7 +170,36 @@ function mergeSort(arr) {
 
 // It should return the pivot element's new index
 function partition(arr, left=0, right=arr.length-1) {
+    // This partition method functions with the rightmost element being
+    // our pivot element.
 
+    // Let's keep track of our new pivot index
+    let nP = left;
+    
+    // Now, we want to loop from the left-most element
+    // to the element before our pivot element
+    for(let i = 0; i < right; i++) {
+        // If the element we're looking at is less than our pivot
+        if(arr[i] < arr[right]){
+            // We want to swap the current element with the element at our
+            // new Pivot index
+            let temp = arr[i];
+            arr[i] = arr[nP];
+            arr[nP] = temp;
+            // and increment the new pivot index by 1.
+            nP++;
+        }
+    }
+
+
+    // Finally, to actually move our pivot element into the place it belongs, we'll swap our pivot element
+    // with the element at our new pivot index.
+    let temp = arr[nP];
+    arr[nP] = arr[right];
+    arr[right] = temp;
+
+    // And return the new pivot index.
+    return nP;
 }
 
 
@@ -183,3 +212,4 @@ function partition(arr, left=0, right=arr.length-1) {
 function quickSort(arr, left=0, right=arr.length-1){
 
 }
+
