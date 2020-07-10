@@ -14,6 +14,14 @@ const Potato = () => {
     const [type, setType] = useState("");
     const [method, setMethod] = useState("");
     const [color, setColor] = useState("");
+    
+    // For determining if the form has even been submitted yet
+    const [submitted, setSubmitted] = useState(false);
+
+    // These are going to be the error messages for each field.
+    const [typeError, setTypeError] = useState("Potato type cannot be left blank.");
+    const [methodError, setMethodError] = useState("Cooking method cannot be left blank.");
+    const [colorError, setColorError] = useState("Potato color cannot be left blank.");
 
     // This is the method that we are going to use to handle form submission
     const addTater = e => {
@@ -23,6 +31,12 @@ const Potato = () => {
 
         // Therefore, we must prevent the default action of a form submission
         e.preventDefault();
+        setSubmitted(true);
+
+        if(typeError !== "" || methodError !== "" || colorError !== ""){
+            return;
+        }
+
 
         // Now, we destructure allTaters into a mutable array
         const [...currentTaters] = allTaters;
@@ -30,10 +44,10 @@ const Potato = () => {
         // Push a new tater (created as the parts from the form) into that mutable array
         currentTaters.push({ type, method, color });
         
-
+        
         // And now, set state for allTaters as the newly created currentTaters
         setAllTaters(currentTaters);
-
+        
         // Finally, as a nice little flourish, we'll invoke our resetForm function to clear out the inputs
         // on the form
         resetForm();
@@ -47,6 +61,61 @@ const Potato = () => {
         setType("");
         setMethod("");
         setColor("");
+    }
+
+
+    const typeHandler = e => {
+        const newType = e.target.value;
+        setType(newType);
+        
+        if(newType.length === 0) {
+            setTypeError("Potato type cannot be left blank.");
+        }
+        else if(newType.length < 3) {
+            setTypeError("Potato type must be at least 3 characters.");
+        }
+        else if(newType == "Cody") {
+            setTypeError("That's just mean, Cody is not a potato");
+        }
+        else {
+            setTypeError("");
+        }
+    }
+
+    const methodHandler = e => {
+        const newMethod = e.target.value;
+        setMethod(newMethod);
+
+        if(newMethod.length == 0) {
+            setMethodError("Cooking method cannot be left blank.");
+        }
+        else if(newMethod.length < 3) {
+            setMethodError("Cooking method must be at least 3 characters.");
+        }
+        else if(newMethod == "freeze") {
+            setMethodError("Eww gross, why would you want to eat frozen potatoes?");
+        }
+        else {
+            setMethodError("");
+        }
+    }
+
+    const colorHandler = e => {
+        const newColor = e.target.value;
+        setColor(newColor);
+
+        if(newColor.length == 0) {
+            setColorError("Potato color cannot be left blank.");
+        }
+        else if(newColor.length < 3) {
+            setColorError("Potato color must be at least 3 characters.");
+        }
+        else if(newColor == "fuzzlesnap") {
+            setColorError("Dude, that's not even a color. Come on.");
+        }
+        else {
+            setColorError("");
+        }
     }
 
     return (
@@ -74,16 +143,34 @@ const Potato = () => {
             {/* We've added an event listener to our form to listen for form submissions. 
             When the form is submitted, it will call the addTater function that we wrote! */}
             <form onSubmit={ addTater }>
+                {
+                    submitted && typeError ? 
+                    <p>{ typeError }</p>
+                    :
+                    ''
+                }
                 <label htmlFor="">Type: </label>
                 {/* Pretty typical onChange event handling: update some part of state with the 
                 value of the input whenever the input itself is changed */}
-                <input type="text" onChange={ e => setType(e.target.value)} value={ type }/>
+                <input type="text" onChange={ e => typeHandler(e) } value={ type }/>
                 <br/>
+                {
+                    submitted && methodError ?
+                    <p>{ methodError }</p>
+                    :
+                    ''
+                }
                 <label htmlFor="">Cooking Method: </label>
-                <input type="text" onChange={ e => setMethod(e.target.value)} value={ method }/>
+                <input type="text" onChange={ e => methodHandler(e) } value={ method }/>
                 <br/>
+                {
+                    submitted && colorError ?
+                    <p>{ colorError }</p>
+                    :
+                    ''
+                }
                 <label htmlFor="">Color: </label>
-                <input type="text" onChange={ e => setColor(e.target.value)} value={ color }/>
+                <input type="text" onChange={ e => colorHandler(e) } value={ color }/>
                 <br/>
                 <button>Add that tater!</button>
             </form>
