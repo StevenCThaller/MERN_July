@@ -170,15 +170,23 @@ function mergeSort(arr) {
 
 // It should return the pivot element's new index
 function partition(arr, left=0, right=arr.length-1) {
+    if(left >= right) {
+        return left;
+    }
     // This partition method functions with the rightmost element being
     // our pivot element.
 
     // Let's keep track of our new pivot index
     let nP = left;
     
+
+    // BIG PICTURE FOR THIS FOR LOOP: We want to shift things around
+    // so that when we move our pivot element into its place, everything to the left
+    // is less than it, and everything to the right is greater than it.
+    
     // Now, we want to loop from the left-most element
     // to the element before our pivot element
-    for(let i = 0; i < right; i++) {
+    for(let i = left; i < right; i++) {
         // If the element we're looking at is less than our pivot
         if(arr[i] < arr[right]){
             // We want to swap the current element with the element at our
@@ -210,6 +218,18 @@ function partition(arr, left=0, right=arr.length-1) {
 // HINT: This will consist of a break case, 2 recursive calls, and a call
 // to the partition function (not necessarily in that order!!!!);
 function quickSort(arr, left=0, right=arr.length-1){
-
+    if(left >= right)
+        return arr;
+        
+    let i = partition(arr, left, right);
+    // Run quicksort for the portion of the array to the left of our partition index
+    quickSort(arr, left, i-1);
+    // Run quicksort for the portion of the array to the right of our partition index
+    return quickSort(arr, i+1, right);
 }
+
+
+let arr = [10,2,28,23,12,8,35];
+
+console.log(quickSort(arr));
 
