@@ -38,6 +38,30 @@ function union(arr1, arr2) {
 }
 
 
+// Write a function that calculates the difference of
+// diagonals of a 2D array.
+
+// EXAMPLE:
+// let arr = [[8,2,6],
+//            [4,1,3],
+//            [5,9,7]]
+
+// Diagonal 1 sum: 8 + 1 + 7 = 16
+// Diagonal 2 sum: 6 + 1 + 5 = 12
+
+// Difference => |16-12| = 4
+function diagDiff(arr){
+    
+}
+
+
+
+
+
+
+
+
+
 
 /* Dictionaries are cool 
 let dict = {};
