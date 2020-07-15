@@ -29,12 +29,28 @@ function intersection(arr1, arr2) {
 
 // EXAMPLE: 
 // The union of:
-// [1,3,4,7,9]
-// [3,5,8,9,11]
+// [1,3,3,4,7,9]
+// [3,5,8,8,9,11]
 // would be: [1,3,4,5,7,8,9,11]
 
 function union(arr1, arr2) {
-    
+    let dict = {};
+    let union = [];
+    for(let i = 0; i < arr1.length; i++) {
+        if(!dict[arr1[i]]){
+            dict[arr1[i]] = true;
+            union.push(arr1[i]);
+        }
+    }
+
+    for(let i = 0; i < arr2.length; i++) {
+        if(!dict[arr2[i]]){
+            dict[arr2[i]] = true;
+            union.push(arr2[i]);
+        }
+    }
+
+    return union;
 }
 
 
@@ -51,7 +67,17 @@ function union(arr1, arr2) {
 
 // Difference => |16-12| = 4
 function diagDiff(arr){
-    
+    let sum1 = 0;
+    let sum2 = 0;
+    for(let i = 0; i < arr.length; i++){
+        sum1 += arr[i][i];
+    }
+
+    for(let i = arr.length-1; i >= 0; i--){
+        sum2 += arr[arr.length-1-i][i];
+    }
+
+    return Math.abs(sum1-sum2);
 }
 
 
