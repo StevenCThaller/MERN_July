@@ -89,9 +89,9 @@ function diagDiff(arr){
 // [1,3,5,9]
 // [1,2,5,8]
 
-// difference -> [2,8]
+// difference -> [2,3,8,9]
 function symDiff(arr1, arr2){
-    
+
 }
 
 
