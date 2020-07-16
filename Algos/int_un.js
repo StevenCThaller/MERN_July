@@ -91,13 +91,73 @@ function diagDiff(arr){
 
 // difference -> [2,3,8,9]
 function symDiff(arr1, arr2){
+    let dict = {};
+    let diff = [];
+    for(let i = 0; i < arr1.length; i++) {
+        if(!dict[arr1[i]]){
+            dict[arr1[i]] = "arr1";
+        }
+    }
 
+    for(let i = 0; i < arr2.length; i++) {
+        if(!dict[arr2[i]]){
+            dict[arr2[i]] = "arr2";
+        }
+        else if(dict[arr2[i]] != "arr2") {
+            dict[arr2[i]] += "arr2";
+        }
+    }
+
+    for(let key in dict){
+        if(dict[key] == "arr1" || dict[key] == "arr2") {
+            diff.push(parseInt(key));
+        }
+    }
+    return diff;
 }
 
 
+// console.log(symDiff([1,3,3], [1,2,2]))
 
 
 
+// This one is for when arr1 and arr2 are guaranteed to
+// be sorted.
+function sortSymDiff(arr1, arr2){
+    let i = 0; 
+    let j = 0;
+    let diff = [];
+    while(i < arr1.length && j < arr2.length){
+        if(arr1[i] < arr2[j]){
+            diff.push(arr1[i]);
+            i++;
+        }
+        else if(arr2[j] < arr1[i]){
+            diff.push(arr2[j]);
+            j++;
+        }
+        else {
+            i++;
+            j++;
+        }
+    }
+
+
+    if(i < arr1.length){
+        for(i; i < arr1.length; i++) {
+            diff.push(arr1[i]);
+        }
+    }
+    else {
+        for(j; j < arr2.length; j++) {
+            diff.push(arr2[j]);
+        }
+    }
+
+    return diff;
+}
+
+console.log(sortSymDiff([1,2,3,4,5,6,7,8,9,10], [1,3,6]));
 
 
 /* Dictionaries are cool 
