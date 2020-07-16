@@ -81,7 +81,18 @@ function diagDiff(arr){
 }
 
 
+// Write a function that finds the symmetric difference between
+// two arrays. This means, looking back on our venn diagram explanation,
+// the section of the venn diagrams EXCEPT FOR the intersection.
 
+// EXAMPLE:
+// [1,3,5,9]
+// [1,2,5,8]
+
+// difference -> [2,8]
+function symDiff(arr1, arr2){
+    
+}
 
 
 
