@@ -16,7 +16,12 @@ const CreateUser = () => {
         password: ""
     })
 
-    
+    const changeHandler = e => {
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        });
+    }
 
     const submitData = () => {
         axios.post("http://localhost:8000/api/users", user)
@@ -60,7 +65,7 @@ const CreateUser = () => {
     return (
         <div>
             <h2>Create New User</h2>
-            <Form data={ user } errors={ errors } setData={ setUser } submitData={ submitData }/>
+            <Form data={ user } changeHandler={ changeHandler } errors={ errors } setData={ setUser } submitData={ submitData }/>
         </div>
     )
 }

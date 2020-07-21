@@ -1,14 +1,9 @@
 import React, { useState }from 'react'
 
 const Form = props => {
-    const { data, setData, errors, submitData } = props;
+    const { data, setData, changeHandler, errors, submitData } = props;
 
-    const changeHandler = e => {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    }
+    
 
     const submitHandler = e => {
         e.preventDefault();
