@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const [socket] = useState(() => io(':8000'))
   const [connected, setConnected] = useState(false);
+  const [inChat, setInChat] = useState(false);
 
   const [uname, setUname] = useState("");
   const [tUname, setTUname] = useState("");
@@ -15,19 +16,31 @@ function App() {
   useEffect(() => {
     socket.emit('connected');
 
-    socket.on('success', data => setConnected(true));
+    // socket.on('success', data => setConnected(true));
 
-    socket.on('message_from_server', data => {
-      console.log(data);
-      let [...curLog] = chatLog;
-      console.log(curLog)
-      curLog.push(data);
+    // socket.on('message_from_server', data => {
+    //   console.log(data);
+    //   let [...curLog] = chatLog;
+    //   console.log(curLog)
+    //   curLog.push(data);
 
-      setChatLog(curLog);
-    });
+    //   setChatLog(curLog);
+    // });
 
     return () => socket.disconnect(true);
   }, [])
+
+  useEffect( () => {
+    socket.on('success', data => setConnected(true));
+  })
+
+  useEffect(() => {
+    socket.on('message_from_server', data => {
+      let [...curLog] = chatLog;
+      curLog.push(data);
+      setChatLog(curLog);
+    })
+  })
 
   const unameSubmit = e => {
     e.preventDefault();
